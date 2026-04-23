@@ -321,7 +321,7 @@ export default function ReviewsSlider() {
     .sort((a, b) => a.index - b.index);
 
   return (
-    <section id="kundenstimmen" className="overflow-hidden bg-salt-greige-bg py-14 md:py-20">
+    <section className="overflow-hidden bg-salt-greige-bg py-14 md:py-20">
       <div className="mx-auto mb-8 max-w-[700px] px-6 text-center md:mb-14">
         <div
           className="reveal-on-scroll mb-6 flex items-center justify-center gap-3"
