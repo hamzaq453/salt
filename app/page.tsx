@@ -5,6 +5,7 @@ import DieGalerie from "@/components/sections/DieGalerie";
 import Hero from "@/components/sections/Hero";
 import LogosMarquee from "@/components/sections/LogosMarquee";
 import WasIstSalt from "@/components/sections/WasIstSalt";
+import WieDieBilderWirken from "@/components/sections/WieDieBilderWirken";
 
 export default function HomePage() {
   return (
@@ -16,6 +17,7 @@ export default function HomePage() {
       <WasIstSalt />
       <DieGalerie />
       <ChangeYourLife />
+      <WieDieBilderWirken />
     </main>
   );
 }

@@ -49,6 +49,60 @@
   }
 }
 
+/* Wie die Bilder wirken — science section animations */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes saltSciencePulse {
+  0%,
+  100% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(0.92);
+  }
+}
+
+@keyframes blink {
+  0%,
+  88%,
+  100% {
+    transform: scaleY(1);
+  }
+  94% {
+    transform: scaleY(0.04);
+  }
+}
+
+@keyframes aurora {
+  from {
+    filter: hue-rotate(0deg) brightness(1);
+  }
+  to {
+    filter: hue-rotate(30deg) brightness(1.2);
+  }
+}
+
+@keyframes morphPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.06);
+    opacity: 0.7;
+  }
+}
+
 /* Explicit utility class for elements that need the animation */
 .animate-fade-slide-up {
   animation: fadeSlideUp 0.7s ease forwards;
