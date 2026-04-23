@@ -1,26 +1,127 @@
 @import "tailwindcss";
 
+/* ─── Runtime CSS variables ─────────────────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f7f5f3;
+  --foreground: #141414;
 }
 
+/* ─── Tailwind v4 theme — inlined utilities (font families, bg/fg) ───────── */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  /* Inter — sans / display / body aliases */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ─── Tailwind v4 theme — brand design tokens ────────────────────────────── */
+@theme {
+  /* Brand Colors */
+  --color-salt-violet: #6a0bcf;
+  --color-salt-violet-light: #f0ebf9;
+  --color-salt-violet-mid: #e3d4f5;
+  --color-salt-crimson: #d40000;
+  --color-salt-greige: #d6ccc2;
+  --color-salt-greige-bg: #f5f0eb;
+  --color-salt-cream: #faf7f4;
+  --color-salt-gold: #c9a84c;
+  --color-salt-black: #141414;
+  --color-salt-white: #f7f5f3;
+  --color-salt-muted: #6b6460;
+  --color-salt-muted-light: #9a9188;
+
+  /* Animation */
+  --animate-fade-slide-up: fadeSlideUp 0.7s ease forwards;
+}
+
+/* ─── Custom keyframes ───────────────────────────────────────────────────── */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
+/* Explicit utility class for elements that need the animation */
+.animate-fade-slide-up {
+  animation: fadeSlideUp 0.7s ease forwards;
+}
+
+/* Infinite logo marquee — duplicate strip in markup; -50% = one full cycle */
+@keyframes logoMarquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.company-logo-marquee-track {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Duration is set on the element via --logo-marquee-duration (see Hero.tsx) */
+  .company-logo-marquee-track {
+    animation: logoMarquee var(--logo-marquee-duration, 42s) linear infinite;
+  }
+
+  .company-logo-marquee-track:hover {
+    animation-play-state: paused;
+  }
+}
+
+/* Scroll-triggered section reveals (IntersectionObserver + .revealed) */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+
+.reveal-on-scroll.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on-scroll {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .salt-card .card-top-bar {
+    transform: scaleX(1);
+    transition: none;
+  }
+}
+
+/* Was ist SALT — card top bar draws in when card scroll-reveals */
+.salt-card .card-top-bar {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.5s ease;
+}
+
+.salt-card.revealed .card-top-bar {
+  transform: scaleX(1);
+}
+
+/* ─── Base styles ─────────────────────────────────────────────────────────── */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 400;
 }
