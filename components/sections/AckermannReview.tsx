@@ -110,10 +110,14 @@ export default function AckermannReview() {
             </p>
 
             <div className="flex items-center gap-4 border-t border-salt-greige/40 pt-2">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-salt-gold/40 bg-salt-gold/20">
-                <span className="font-sans text-sm font-bold text-salt-gold">
-                  JA
-                </span>
+              <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full border border-salt-gold/40 bg-salt-gold/20">
+                <Image
+                  src="/Joseph.png"
+                  alt="Dr. Josef Ackermann"
+                  fill
+                  className="object-cover"
+                  sizes="48px"
+                />
               </div>
 
               <div className="flex flex-col gap-0.5">
@@ -123,18 +127,6 @@ export default function AckermannReview() {
                 <p className="font-sans text-xs font-normal text-salt-muted-light">
                   Vorstandsvorsitzender · Deutsche Bank
                 </p>
-              </div>
-
-              <div className="ml-auto">
-                <div className="relative h-7 w-[90px] grayscale opacity-50">
-                  <Image
-                    src="/companies/deutsche bank transparent.png"
-                    alt="Deutsche Bank"
-                    fill
-                    className="object-contain object-right"
-                    sizes="90px"
-                  />
-                </div>
               </div>
             </div>
           </div>
