@@ -50,7 +50,7 @@ export default function AckermannReview() {
           style={{ transitionDelay: "300ms" }}
         >
           {/* Painting column */}
-          <div className="relative flex min-h-[400px] items-center justify-center overflow-hidden bg-salt-violet-light p-12">
+          <div className="relative flex min-h-[400px] items-center justify-center overflow-hidden bg-salt-violet-light p-8">
             <div className="relative aspect-[4/5] w-full max-w-[320px]">
               <Image
                 src="/paintings/6 universelle Reinigung.jpg"

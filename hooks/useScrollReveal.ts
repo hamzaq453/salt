@@ -11,7 +11,7 @@ export function useScrollReveal() {
           }
         });
       },
-      { threshold: 0.15 },
+      { threshold: 0.1 },
     );
 
     const elements = document.querySelectorAll(".reveal-on-scroll");

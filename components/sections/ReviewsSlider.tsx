@@ -222,7 +222,7 @@ function ReviewCard({
         transition-all duration-500 ease-out
         ${isActive
           ? "z-10 w-[380px] scale-100 cursor-pointer border-l-salt-violet opacity-100 shadow-[0_8px_32px_rgba(0,0,0,0.08)] md:w-[440px]"
-          : "z-0 w-[280px] scale-[0.93] cursor-pointer border-l-transparent opacity-40 blur-[2px] md:w-[320px]"
+          : "z-0 w-[280px] scale-[0.93] cursor-pointer border-l-transparent opacity-40 blur-[1px] md:w-[320px]"
         }
       `}
     >
@@ -387,10 +387,10 @@ export default function ReviewsSlider() {
               type="button"
               onClick={() => goTo(index)}
               className={`
-                h-[5px] cursor-pointer rounded-full transition-all duration-300
+                h-[4px] cursor-pointer rounded-full transition-all duration-300
                 ${index === activeIndex
-                  ? "w-5 bg-salt-violet"
-                  : "w-[5px] bg-salt-greige hover:bg-salt-violet/40"
+                  ? "w-4 bg-salt-violet"
+                  : "w-[4px] bg-salt-greige hover:bg-salt-violet/40"
                 }
               `}
               aria-label={`Gehe zu Bewertung ${index + 1}`}

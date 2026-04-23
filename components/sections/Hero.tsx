@@ -41,20 +41,20 @@ function LogoStripCell({
   if (broken) {
     return (
       <div
-        className="relative h-8 w-[80px] shrink-0 rounded-sm bg-salt-greige-bg/70 opacity-60"
+        className="relative h-10 w-[90px] shrink-0 rounded-sm bg-salt-greige-bg/70 opacity-60"
         aria-hidden
       />
     );
   }
 
   return (
-    <div className="relative h-8 w-[80px] shrink-0 grayscale opacity-70 transition-opacity hover:opacity-100">
+    <div className="relative h-10 w-[90px] shrink-0 grayscale opacity-60 transition-all duration-300 hover:grayscale-0 hover:opacity-100">
       <Image
         src={src}
         alt={alt}
         fill
         className="object-contain object-left"
-        sizes="80px"
+        sizes="90px"
         onError={() => setBroken(true)}
       />
     </div>

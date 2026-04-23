@@ -14,7 +14,7 @@ const socialLinks = [
     label: "Facebook",
     href: "https://www.facebook.com/saltartwithenergy",
     icon: (
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
         <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
       </svg>
     ),
@@ -24,8 +24,8 @@ const socialLinks = [
     href: "https://www.instagram.com/sabine.alter/",
     icon: (
       <svg
-        width="14"
-        height="14"
+        width="12"
+        height="12"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
@@ -43,22 +43,22 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-salt-black px-6 py-12">
-      <div className="mx-auto flex max-w-[1100px] flex-col gap-8">
-        <div className="flex flex-col items-center justify-between gap-8 md:flex-row md:items-start">
+    <footer className="bg-salt-black px-5 py-4 sm:px-6">
+      <div className="mx-auto flex max-w-[1100px] flex-col gap-3">
+        <div className="flex flex-col items-center justify-between gap-3 md:flex-row md:items-center md:gap-4">
           <Link href="/" className="shrink-0">
-            <div className="relative h-10 w-[100px]">
+            <div className="relative h-7 w-[76px]">
               <Image
                 src="/Logo1.png"
                 alt="SALT — art with energy"
                 fill
-                className="object-contain object-left brightness-0 invert"
-                sizes="100px"
+                className="object-contain object-left brightness-0 invert opacity-70"
+                sizes="76px"
               />
             </div>
           </Link>
 
-          <nav className="flex flex-wrap items-center justify-center gap-6 md:gap-8">
+          <nav className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 md:gap-x-4">
             {navLinks.map((link) => (
               <Link
                 key={link.label}
@@ -70,7 +70,7 @@ export default function Footer() {
             ))}
           </nav>
 
-          <div className="flex shrink-0 items-center gap-3">
+          <div className="flex shrink-0 items-center gap-1.5">
             {socialLinks.map((social) => (
               <a
                 key={social.label}
@@ -78,7 +78,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={social.label}
-                className="flex h-9 w-9 items-center justify-center rounded-[4px] border border-[#2a2a2a] bg-transparent text-[#5a5452] transition-all duration-200 hover:border-salt-violet hover:text-salt-violet"
+                className="flex h-7 w-7 items-center justify-center rounded-[4px] border border-[#2a2a2a] bg-transparent text-[#5a5452] transition-all duration-200 hover:border-salt-violet hover:text-salt-violet"
               >
                 {social.icon}
               </a>
@@ -88,21 +88,21 @@ export default function Footer() {
 
         <div className="h-px w-full bg-[#1e1e1e]" />
 
-        <div className="flex flex-col items-center justify-between gap-3 sm:flex-row">
-          <p className="font-sans text-[0.68rem] font-normal tracking-[0.06em] text-[#3a3a3a]">
+        <div className="flex flex-col items-center justify-between gap-1.5 sm:flex-row sm:gap-3">
+          <p className="font-sans text-[0.65rem] font-normal leading-tight tracking-[0.06em] text-[#3a3a3a]">
             © {year} SALT — Sabine Alter. Alle Rechte vorbehalten.
           </p>
 
-          <div className="flex items-center gap-5">
+          <div className="flex items-center gap-4">
             <Link
               href="/impressum"
-              className="font-sans text-[0.68rem] font-normal tracking-[0.06em] text-[#3a3a3a] transition-colors duration-200 hover:text-[#5a5452]"
+              className="font-sans text-[0.65rem] font-normal leading-tight tracking-[0.06em] text-[#3a3a3a] transition-colors duration-200 hover:text-[#5a5452]"
             >
               Impressum
             </Link>
             <Link
               href="/datenschutz"
-              className="font-sans text-[0.68rem] font-normal tracking-[0.06em] text-[#3a3a3a] transition-colors duration-200 hover:text-[#5a5452]"
+              className="font-sans text-[0.65rem] font-normal leading-tight tracking-[0.06em] text-[#3a3a3a] transition-colors duration-200 hover:text-[#5a5452]"
             >
               Datenschutz
             </Link>

@@ -5,7 +5,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const ghostTextStyle: CSSProperties = {
   color: "transparent",
-  WebkitTextStroke: "1px rgba(106, 11, 207, 0.06)",
+  WebkitTextStroke: "1px rgba(106, 11, 207, 0.03)",
   fontSize: "clamp(120px, 22vw, 220px)",
 };
 
@@ -20,7 +20,7 @@ export default function ChangeYourLife() {
   return (
     <section
       id="change-your-life"
-      className="relative overflow-hidden bg-salt-white px-6 py-32"
+      className="relative overflow-hidden bg-salt-white px-6 py-20"
     >
       <div
         aria-hidden="true"

@@ -121,7 +121,7 @@ export default function WieDieBilderWirken() {
       </div>
 
       {/* Row 1 — Quantenphysik: text left, visual right */}
-      <div className="grid min-h-[480px] grid-cols-1 md:grid-cols-2">
+      <div className="grid min-h-[380px] grid-cols-1 md:grid-cols-2">
         <div className="reveal-on-scroll flex flex-col justify-center gap-5 bg-salt-white px-10 py-16 md:px-16">
           <p className="font-sans text-[0.7rem] font-semibold tracking-[0.2em] text-salt-crimson uppercase">
             01 — Quantenphysik
@@ -138,12 +138,6 @@ export default function WieDieBilderWirken() {
             einzigartigen Schwingung. Jeder Mensch hat eine eigene Frequenz.
             Sabine stimmt das Bild auf genau diese Frequenz ab.
           </p>
-          <div className="inline-flex w-fit items-center gap-2 rounded-[2px] bg-salt-violet-light px-3 py-1.5">
-            <div className="h-1.5 w-1.5 shrink-0 rounded-full bg-salt-violet" />
-            <p className="font-sans text-[0.65rem] font-semibold tracking-[0.1em] text-salt-violet uppercase">
-              Quantenfeld · Animierte Ikone
-            </p>
-          </div>
         </div>
         <div className="reveal-on-scroll relative flex min-h-[320px] items-center justify-center overflow-hidden bg-salt-violet-light md:min-h-0">
           <QuantumAnimation />
@@ -151,7 +145,7 @@ export default function WieDieBilderWirken() {
       </div>
 
       {/* Row 2 — Farbe & Auge: visual left, text right */}
-      <div className="grid min-h-[480px] grid-cols-1 md:grid-cols-2">
+      <div className="grid min-h-[380px] grid-cols-1 md:grid-cols-2">
         <div className="reveal-on-scroll relative flex min-h-[320px] items-center justify-center overflow-hidden bg-[#141414] md:min-h-0">
           <EyeAnimation />
         </div>
@@ -172,17 +166,11 @@ export default function WieDieBilderWirken() {
             Deine persönliche Energie ab. Das Ergebnis wirkt täglich auf Dich
             ein.
           </p>
-          <div className="inline-flex w-fit items-center gap-2 rounded-[2px] bg-salt-violet-light px-3 py-1.5">
-            <div className="h-1.5 w-1.5 shrink-0 rounded-full bg-salt-violet" />
-            <p className="font-sans text-[0.65rem] font-semibold tracking-[0.1em] text-salt-violet uppercase">
-              Aurora + Augen-Animation
-            </p>
-          </div>
         </div>
       </div>
 
       {/* Row 3 — Morphogenetisches Feld: text left, visual right */}
-      <div className="grid min-h-[480px] grid-cols-1 md:grid-cols-2">
+      <div className="grid min-h-[380px] grid-cols-1 md:grid-cols-2">
         <div className="reveal-on-scroll flex flex-col justify-center gap-5 bg-salt-white px-10 py-16 md:px-16">
           <p className="font-sans text-[0.7rem] font-semibold tracking-[0.2em] text-salt-crimson uppercase">
             03 — Morphogenetisches Feld
@@ -201,12 +189,6 @@ export default function WieDieBilderWirken() {
             einzigartige Energie eingestimmt ist. Nur Dein Name und Geburtsdatum
             genügen.
           </p>
-          <div className="inline-flex w-fit items-center gap-2 rounded-[2px] bg-salt-violet-light px-3 py-1.5">
-            <div className="h-1.5 w-1.5 shrink-0 rounded-full bg-salt-violet" />
-            <p className="font-sans text-[0.65rem] font-semibold tracking-[0.1em] text-salt-violet uppercase">
-              Pulsierendes Feld · Animation
-            </p>
-          </div>
         </div>
         <div className="reveal-on-scroll relative flex min-h-[320px] items-center justify-center overflow-hidden bg-salt-greige-bg md:min-h-0">
           <MorphogeneticAnimation />
