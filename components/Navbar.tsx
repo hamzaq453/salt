@@ -54,9 +54,9 @@ export default function Navbar() {
                 <Image
                   src="/Logo1.png"
                   alt="SALT — art with energy"
-                  width={100}
-                  height={40}
-                  className="h-10 w-auto object-contain object-left"
+                  width={140}
+                  height={56}
+                  className="h-12 w-auto max-w-[140px] object-contain object-left"
                   priority
                   onError={() => setBrandLogoBroken(true)}
                 />

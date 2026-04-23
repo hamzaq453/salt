@@ -1,17 +1,9 @@
 "use client";
 
-import {
-  useState,
-  useEffect,
-  useRef,
-  type CSSProperties,
-} from "react";
+import { useState, useEffect, type CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { primaryCtaClasses, secondaryCtaClasses } from "@/lib/ctaClasses";
-
-/** Marquee duration (seconds); one full set scrolls by in this time. */
-const LOGO_MARQUEE_DURATION_SEC = 42;
 
 /** Tried in order until one loads (place files in `/public`). */
 const HERO_PORTRAIT_SRCS = ["/sabine.jpg", "/Sabine.png"] as const;
@@ -37,44 +29,28 @@ const COMPANY_LOGOS = [
   { src: "/companies/Atlas_Logo.svg", alt: "Atlas" },
 ] as const;
 
-function slotKey(instanceId: string, index: number) {
-  return `${instanceId}:${index}`;
-}
+const LOGO_STRIP = COMPANY_LOGOS.slice(0, 6);
 
-function MarqueeLogoCell({
+function LogoStripCell({
   src,
   alt,
-  instanceId,
-  index,
-  isHighlighted,
 }: {
   src: string;
   alt: string;
-  instanceId: string;
-  index: number;
-  isHighlighted: boolean;
 }) {
   const [broken, setBroken] = useState(false);
 
   if (broken) {
     return (
       <div
-        data-slot-id={slotKey(instanceId, index)}
-        className={`relative h-8 w-[80px] shrink-0 rounded-sm bg-salt-greige-bg/70 transition-all duration-300 ${
-          isHighlighted ? "opacity-100 ring-1 ring-salt-violet/30" : "opacity-40"
-        }`}
+        className="relative h-8 w-[80px] shrink-0 rounded-sm bg-salt-greige-bg/70 opacity-60"
         aria-hidden
       />
     );
   }
 
   return (
-    <div
-      data-slot-id={slotKey(instanceId, index)}
-      className={`relative h-8 w-[80px] shrink-0 transition-all duration-300 ${
-        isHighlighted ? "grayscale-0 opacity-100" : "grayscale opacity-60"
-      }`}
-    >
+    <div className="relative h-8 w-[80px] shrink-0 grayscale opacity-70 transition-opacity hover:opacity-100">
       <Image
         src={src}
         alt={alt}
@@ -87,83 +63,10 @@ function MarqueeLogoCell({
   );
 }
 
-function LogoMarqueeItems({
-  logos,
-  instanceId,
-  centerSlotKey,
-  highlightEnabled,
-}: {
-  logos: typeof COMPANY_LOGOS;
-  instanceId: string;
-  centerSlotKey: string | null;
-  highlightEnabled: boolean;
-}) {
-  return (
-    <>
-      {logos.map((logo, index) => {
-        const isHighlighted =
-          highlightEnabled && centerSlotKey === slotKey(instanceId, index);
-        return (
-          <MarqueeLogoCell
-            key={`${logo.src}-${instanceId}`}
-            src={logo.src}
-            alt={logo.alt}
-            instanceId={instanceId}
-            index={index}
-            isHighlighted={isHighlighted}
-          />
-        );
-      })}
-    </>
-  );
-}
-
-function HeroPortrait() {
-  const [srcIndex, setSrcIndex] = useState(0);
-  const [failedAll, setFailedAll] = useState(false);
-
-  if (failedAll) {
-    return (
-      <div
-        className="flex max-h-[min(75vh,720px)] min-h-[280px] w-full flex-col items-center justify-end bg-gradient-to-t from-salt-violet-mid/25 to-transparent px-6 pb-10 text-center"
-        role="img"
-        aria-label="Portrait platzhalter — Bilddatei fehlt unter /public/sabine.jpg oder /public/Sabine.png"
-      >
-        <p className="font-body max-w-xs text-sm font-normal text-salt-muted">
-          Legen Sie das Portrait als{" "}
-          <code className="text-salt-violet">public/sabine.jpg</code> oder{" "}
-          <code className="text-salt-violet">public/Sabine.png</code> ab.
-        </p>
-      </div>
-    );
-  }
-
-  const src = HERO_PORTRAIT_SRCS[srcIndex] ?? HERO_PORTRAIT_SRCS[0];
-
-  return (
-    <Image
-      src={src}
-      alt="Sabine Alter — SALT Energie-Künstlerin"
-      width={1200}
-      height={1800}
-      priority
-      className="h-auto max-h-[min(75vh,720px)] w-auto max-w-full object-contain object-bottom"
-      sizes="(max-width: 768px) 100vw, 50vw"
-      onError={() => {
-        if (srcIndex + 1 < HERO_PORTRAIT_SRCS.length) {
-          setSrcIndex((i) => i + 1);
-        } else {
-          setFailedAll(true);
-        }
-      }}
-    />
-  );
-}
-
 export default function Hero() {
-  const marqueeViewportRef = useRef<HTMLDivElement | null>(null);
-  const [centerSlotKey, setCenterSlotKey] = useState<string | null>(null);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [portraitIndex, setPortraitIndex] = useState(0);
+  const [portraitFailed, setPortraitFailed] = useState(false);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -173,76 +76,24 @@ export default function Hero() {
     return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
 
-  useEffect(() => {
-    if (prefersReducedMotion) {
-      setCenterSlotKey(null);
-      return;
-    }
-
-    const viewport = marqueeViewportRef.current;
-    if (!viewport) return;
-
-    let rafId = 0;
-
-    const tick = () => {
-      const slots = viewport.querySelectorAll<HTMLElement>("[data-slot-id]");
-      const viewRect = viewport.getBoundingClientRect();
-      const centerX = viewRect.left + viewRect.width / 2;
-      const centerY = viewRect.top + viewRect.height / 2;
-
-      let bestKey: string | null = null;
-      let bestScore = Infinity;
-
-      slots.forEach((el) => {
-        const rect = el.getBoundingClientRect();
-        const overlapsX =
-          rect.right > viewRect.left && rect.left < viewRect.right;
-        const overlapsY =
-          rect.bottom > viewRect.top && rect.top < viewRect.bottom;
-        if (!overlapsX || !overlapsY) return;
-
-        const slotCenterX = rect.left + rect.width / 2;
-        const slotCenterY = rect.top + rect.height / 2;
-        const dx = Math.abs(slotCenterX - centerX);
-        const dy = Math.abs(slotCenterY - centerY);
-        const score = dx + dy * 0.35;
-
-        const key = el.getAttribute("data-slot-id");
-        if (!key) return;
-
-        if (score < bestScore) {
-          bestScore = score;
-          bestKey = key;
-        }
-      });
-
-      if (bestKey !== null) {
-        setCenterSlotKey((prev) => (prev === bestKey ? prev : bestKey));
-      }
-
-      rafId = window.requestAnimationFrame(tick);
-    };
-
-    rafId = window.requestAnimationFrame(tick);
-    return () => window.cancelAnimationFrame(rafId);
-  }, [prefersReducedMotion]);
-
-  const marqueeStyle = {
-    "--logo-marquee-duration": `${LOGO_MARQUEE_DURATION_SEC}s`,
-  } as CSSProperties;
+  const portraitSrc =
+    HERO_PORTRAIT_SRCS[portraitIndex] ?? HERO_PORTRAIT_SRCS[0];
 
   return (
     <section
-      id="sabine"
+      id="hero"
       className="grid min-h-screen grid-cols-1 overflow-hidden bg-salt-white pt-[72px] md:grid-cols-2"
     >
       {/* LEFT COLUMN */}
-      <div className="flex flex-col justify-center px-6 py-14 md:px-16 md:py-20">
+      <div
+        id="sabine"
+        className="flex min-h-[calc(100vh-72px)] flex-col justify-center px-8 py-16 md:min-h-0 md:px-16 md:py-20"
+      >
         <p
           className="mb-6 flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.2em] text-salt-violet opacity-0 animate-fade-slide-up"
           style={{ animationDelay: "0ms" }}
         >
-          <span className="inline-block w-8 h-px bg-salt-violet shrink-0" />
+          <span className="inline-block h-px w-8 shrink-0 bg-salt-violet" />
           Energie-Kunst für Führungspersönlichkeiten
         </p>
 
@@ -264,7 +115,7 @@ export default function Hero() {
         </p>
 
         <div
-          className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-12 opacity-0 animate-fade-slide-up"
+          className="mb-12 flex flex-col gap-3 opacity-0 animate-fade-slide-up sm:flex-row sm:gap-4"
           style={{ animationDelay: "320ms" }}
         >
           <a
@@ -285,53 +136,73 @@ export default function Hero() {
           className="opacity-0 animate-fade-slide-up"
           style={{ animationDelay: "440ms" }}
         >
-          <p className="font-body text-[0.68rem] font-medium tracking-[0.16em] uppercase text-salt-greige mb-3">
+          <p className="mb-3 font-body text-[0.68rem] font-medium tracking-[0.16em] text-salt-greige uppercase">
             Unternehmen, mit denen ich gearbeitet habe
           </p>
           <div
-            ref={marqueeViewportRef}
-            className="relative w-full overflow-hidden"
-            aria-label="Logos von Unternehmen, mit denen Sabine Alter gearbeitet hat"
+            className="flex flex-wrap items-center gap-x-6 gap-y-3"
+            aria-label="Auswahl von Unternehmenslogos, mit denen Sabine Alter gearbeitet hat"
           >
-            <div
-              className="company-logo-marquee-track py-1"
-              style={marqueeStyle}
-            >
-              <LogoMarqueeItems
-                logos={COMPANY_LOGOS}
-                instanceId="a"
-                centerSlotKey={centerSlotKey}
-                highlightEnabled={!prefersReducedMotion}
-              />
-              <LogoMarqueeItems
-                logos={COMPANY_LOGOS}
-                instanceId="b"
-                centerSlotKey={centerSlotKey}
-                highlightEnabled={!prefersReducedMotion}
-              />
-            </div>
+            {LOGO_STRIP.map((logo) => (
+              <LogoStripCell key={logo.src} src={logo.src} alt={logo.alt} />
+            ))}
+            <span className="font-sans text-[0.72rem] tracking-[0.06em] text-salt-muted-light">
+              +12 weitere
+            </span>
           </div>
         </div>
       </div>
 
-      {/* RIGHT COLUMN */}
+      {/* RIGHT COLUMN — full-height image; gradient behind full column */}
       <div
-        className="relative flex items-end justify-center overflow-hidden bg-gradient-to-br from-salt-violet-light to-salt-greige-bg min-h-[500px] md:min-h-0 opacity-0 animate-fade-slide-up"
-        style={{ animationDelay: "200ms" }}
+        className={`relative min-h-[min(65vh,620px)] overflow-hidden bg-gradient-to-b from-salt-violet-light to-salt-greige-bg md:min-h-[calc(100vh-72px)] ${
+          prefersReducedMotion ? "" : "opacity-0 animate-fade-slide-up"
+        }`}
+        style={prefersReducedMotion ? undefined : { animationDelay: "200ms" }}
       >
-        <div className="relative z-0 flex w-full items-end justify-center px-2 min-h-[500px] md:min-h-0 md:h-full">
-          <HeroPortrait />
-        </div>
+        {!portraitFailed ? (
+          <div className="absolute inset-0">
+            <Image
+              src={portraitSrc}
+              alt="Sabine Alter — SALT Energie-Künstlerin"
+              fill
+              priority
+              className="object-cover object-top"
+              sizes="50vw"
+              onError={() => {
+                if (portraitIndex + 1 < HERO_PORTRAIT_SRCS.length) {
+                  setPortraitIndex((i) => i + 1);
+                } else {
+                  setPortraitFailed(true);
+                }
+              }}
+            />
+          </div>
+        ) : (
+          <div
+            className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-b from-salt-violet-light/80 to-salt-greige-bg px-6 text-center"
+            role="img"
+            aria-label="Portrait platzhalter"
+          >
+            <p className="font-body max-w-xs text-sm font-normal text-salt-muted">
+              Legen Sie das Portrait als{" "}
+              <code className="text-salt-violet">public/sabine.jpg</code> oder{" "}
+              <code className="text-salt-violet">public/Sabine.png</code> ab.
+            </p>
+          </div>
+        )}
 
-        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-salt-violet-light/60 to-transparent z-10 pointer-events-none" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-40 bg-gradient-to-b from-salt-violet-light/50 to-transparent" />
 
-        <div className="absolute top-4 right-4 z-20 rounded-[4px] bg-salt-gold px-4 py-2 font-body text-[0.68rem] font-medium uppercase tracking-[0.12em] text-white md:top-8 md:right-8">
+        <div className="absolute top-6 right-6 z-20 rounded-[2px] bg-salt-gold px-4 py-2 font-sans text-[0.68rem] font-semibold tracking-[0.12em] text-white uppercase">
           3Sat · Scobel
         </div>
 
-        <div className="absolute bottom-4 left-4 z-20 border-l-[3px] border-salt-violet bg-salt-white px-5 py-4 shadow-sm md:bottom-8 md:left-8">
-          <p className="font-display text-4xl font-bold text-salt-violet leading-none">38+</p>
-          <p className="font-body text-[0.7rem] font-normal uppercase tracking-[0.1em] text-salt-muted-light mt-1">
+        <div className="absolute bottom-8 left-8 z-20 border-l-[3px] border-salt-violet bg-white px-5 py-4">
+          <p className="font-sans text-4xl leading-none font-extrabold text-salt-violet">
+            38+
+          </p>
+          <p className="mt-1 font-sans text-[0.7rem] font-medium uppercase tracking-[0.1em] text-salt-muted-light">
             Einmalige Energie-Bilder
           </p>
         </div>
