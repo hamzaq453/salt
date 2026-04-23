@@ -1,7 +1,7 @@
 # SALT
 
 Marketing site for **SALT by Sabine Alter** — Next.js (App Router), Tailwind CSS v4, TypeScript.
-
+ 
 ## Getting Started
 
 Install dependencies and run the dev server:
