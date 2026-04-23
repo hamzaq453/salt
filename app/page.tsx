@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import AckermannReview from "@/components/sections/AckermannReview";
 import ChangeYourLife from "@/components/sections/ChangeYourLife";
 import DiFrage from "@/components/sections/DiFrage";
 import DieGalerie from "@/components/sections/DieGalerie";
@@ -6,6 +7,7 @@ import Hero from "@/components/sections/Hero";
 import LogosMarquee from "@/components/sections/LogosMarquee";
 import WasIstSalt from "@/components/sections/WasIstSalt";
 import WieDieBilderWirken from "@/components/sections/WieDieBilderWirken";
+import ReviewsSlider from "@/components/sections/ReviewsSlider";
 
 export default function HomePage() {
   return (
@@ -18,6 +20,8 @@ export default function HomePage() {
       <DieGalerie />
       <ChangeYourLife />
       <WieDieBilderWirken />
+      <AckermannReview />
+      <ReviewsSlider />
     </main>
   );
 }
