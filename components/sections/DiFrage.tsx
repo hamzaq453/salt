@@ -14,7 +14,7 @@ export default function DiFrage() {
         >
           <span className="inline-block h-px w-8 shrink-0 bg-salt-violet" />
           <p className="font-body text-xs font-semibold uppercase tracking-[0.2em] text-salt-violet">
-            Du bist hier, weil...
+            DU BIST HIER, WEIL...
           </p>
           <span className="inline-block h-px w-8 shrink-0 bg-salt-violet" />
         </div>
@@ -58,9 +58,9 @@ export default function DiFrage() {
         >
           „An der Spitze ist es einsam.
           <br />
-          Vielleicht ist es Zeit, Rat aus
+          Vielleicht ist es Zeit,
           <br />
-          Deinem Innern anzunehmen.“
+          Rat aus Deinem Innern anzunehmen.{'\u201C'}
         </blockquote>
 
         <div
