@@ -232,7 +232,10 @@ export default function Hero() {
   } as CSSProperties;
 
   return (
-    <section className="min-h-screen pt-[72px] grid grid-cols-1 overflow-hidden bg-salt-white md:grid-cols-2">
+    <section
+      id="sabine"
+      className="grid min-h-screen grid-cols-1 overflow-hidden bg-salt-white pt-[72px] md:grid-cols-2"
+    >
       {/* LEFT COLUMN */}
       <div className="flex flex-col justify-center px-6 py-14 md:px-16 md:py-20">
         <p

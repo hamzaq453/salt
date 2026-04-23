@@ -1,6 +1,8 @@
+import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import AckermannReview from "@/components/sections/AckermannReview";
 import ChangeYourLife from "@/components/sections/ChangeYourLife";
+import CTASection from "@/components/sections/CTASection";
 import DiFrage from "@/components/sections/DiFrage";
 import DieGalerie from "@/components/sections/DieGalerie";
 import Hero from "@/components/sections/Hero";
@@ -22,6 +24,8 @@ export default function HomePage() {
       <WieDieBilderWirken />
       <AckermannReview />
       <ReviewsSlider />
+      <CTASection />
+      <Footer />
     </main>
   );
 }

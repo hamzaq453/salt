@@ -7,7 +7,7 @@ export default function AckermannReview() {
   useScrollReveal();
 
   return (
-    <section id="ackermann" className="bg-salt-white px-6 py-20">
+    <section id="transformationen" className="bg-salt-white px-6 py-20">
       <div className="mx-auto mb-14 flex max-w-[1100px] flex-col items-center text-center">
         <div
           className="reveal-on-scroll mb-6 flex items-center gap-3"
