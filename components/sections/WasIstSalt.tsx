@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { secondaryCtaClasses } from "@/lib/ctaClasses";
 
 export default function WasIstSalt() {
   useScrollReveal();
@@ -54,7 +53,7 @@ export default function WasIstSalt() {
         />
 
         <p
-          className="reveal-on-scroll mb-16 max-w-[520px] text-center font-body text-base font-normal leading-[1.75] text-salt-muted"
+          className="reveal-on-scroll mb-10 max-w-[500px] text-center font-body text-base font-normal leading-[1.75] text-salt-muted"
           style={{ transitionDelay: "200ms" }}
         >
           Ein einzigartiges, handgemaltes Kunstwerk — ausschließlich auf Deine
@@ -65,10 +64,10 @@ export default function WasIstSalt() {
           {cards.map((card, index) => (
             <div
               key={card.number}
-              className="reveal-on-scroll salt-card group relative flex flex-col gap-4 bg-salt-white p-10"
+              className="salt-card reveal-on-scroll group relative flex flex-col gap-4 bg-white p-8"
               style={{ transitionDelay: `${index * 150}ms` }}
             >
-              <div className="card-top-bar absolute left-0 right-0 top-0 h-[3px] bg-salt-violet" />
+              <div className="card-top-bar absolute top-0 right-0 left-0 h-[2px] bg-salt-violet" />
 
               <div className="flex items-center gap-3">
                 <div className="flex h-7 w-7 shrink-0 rotate-45 items-center justify-center border border-salt-violet">
@@ -87,11 +86,11 @@ export default function WasIstSalt() {
                 {card.body}
               </p>
 
-              <div className="mt-2 h-px w-full bg-salt-greige/50" />
+              <div className="h-px w-full bg-salt-greige/50" />
 
               <Link
                 href="/galerie"
-                className={`!text-xs inline-flex max-w-fit items-center justify-center uppercase tracking-[0.1em] no-underline transition-all duration-300 group-hover:tracking-[0.16em] ${secondaryCtaClasses}`}
+                className="mt-auto flex items-center gap-1 font-sans text-sm font-medium tracking-[0.06em] text-salt-violet transition-all duration-300 no-underline hover:tracking-[0.12em]"
               >
                 {card.link} →
               </Link>
