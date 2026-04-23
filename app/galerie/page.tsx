@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
+import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import LightboxModal from "@/components/gallery/LightboxModal";
 import { paintings } from "@/data/paintings";
@@ -171,6 +172,8 @@ export default function GaleriePage() {
           </a>
         </div>
       </main>
+
+      <Footer />
 
       {lightboxIndex !== null ? (
         <LightboxModal
