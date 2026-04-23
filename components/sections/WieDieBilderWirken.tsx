@@ -83,8 +83,8 @@ export default function WieDieBilderWirken() {
   useScrollReveal();
 
   return (
-    <section id="wie-es-wirkt" className="bg-salt-white">
-      <div className="flex flex-col items-center bg-salt-white px-6 py-20 text-center">
+    <section id="wie-es-wirkt" className="bg-salt-white pb-0">
+      <div className="flex flex-col items-center bg-salt-white px-6 py-14 text-center md:py-20">
         <div className="mx-auto flex max-w-[700px] flex-col items-center">
           <div
             className="reveal-on-scroll mb-6 flex items-center gap-3"
@@ -122,7 +122,7 @@ export default function WieDieBilderWirken() {
 
       {/* Row 1 — Quantenphysik: text left, visual right */}
       <div className="grid min-h-[380px] grid-cols-1 md:grid-cols-2">
-        <div className="reveal-on-scroll flex flex-col justify-center gap-5 bg-salt-white px-10 py-16 md:px-16">
+        <div className="reveal-on-scroll flex flex-col justify-center gap-5 bg-salt-white px-6 py-10 md:px-16 md:py-16">
           <p className="font-sans text-[0.7rem] font-semibold tracking-[0.2em] text-salt-crimson uppercase">
             01 — Quantenphysik
           </p>
@@ -139,17 +139,17 @@ export default function WieDieBilderWirken() {
             Sabine stimmt das Bild auf genau diese Frequenz ab.
           </p>
         </div>
-        <div className="reveal-on-scroll relative flex min-h-[320px] items-center justify-center overflow-hidden bg-salt-violet-light md:min-h-0">
+        <div className="reveal-on-scroll relative flex min-h-[240px] items-center justify-center overflow-hidden bg-salt-violet-light md:min-h-0">
           <QuantumAnimation />
         </div>
       </div>
 
       {/* Row 2 — Farbe & Auge: visual left, text right */}
       <div className="grid min-h-[380px] grid-cols-1 md:grid-cols-2">
-        <div className="reveal-on-scroll relative flex min-h-[320px] items-center justify-center overflow-hidden bg-[#141414] md:min-h-0">
+        <div className="reveal-on-scroll relative flex min-h-[240px] items-center justify-center overflow-hidden bg-[#141414] md:min-h-0">
           <EyeAnimation />
         </div>
-        <div className="reveal-on-scroll flex flex-col justify-center gap-5 bg-salt-greige-bg px-10 py-16 md:px-16">
+        <div className="reveal-on-scroll flex flex-col justify-center gap-5 bg-salt-greige-bg px-6 py-10 md:px-16 md:py-16">
           <p className="font-sans text-[0.7rem] font-semibold tracking-[0.2em] text-salt-crimson uppercase">
             02 — Farbe & Auge
           </p>
@@ -171,7 +171,7 @@ export default function WieDieBilderWirken() {
 
       {/* Row 3 — Morphogenetisches Feld: text left, visual right */}
       <div className="grid min-h-[380px] grid-cols-1 md:grid-cols-2">
-        <div className="reveal-on-scroll flex flex-col justify-center gap-5 bg-salt-white px-10 py-16 md:px-16">
+        <div className="reveal-on-scroll flex flex-col justify-center gap-5 bg-salt-white px-6 py-10 md:px-16 md:py-16">
           <p className="font-sans text-[0.7rem] font-semibold tracking-[0.2em] text-salt-crimson uppercase">
             03 — Morphogenetisches Feld
           </p>
@@ -190,7 +190,7 @@ export default function WieDieBilderWirken() {
             genügen.
           </p>
         </div>
-        <div className="reveal-on-scroll relative flex min-h-[320px] items-center justify-center overflow-hidden bg-salt-greige-bg md:min-h-0">
+        <div className="reveal-on-scroll relative flex min-h-[240px] items-center justify-center overflow-hidden bg-salt-greige-bg md:min-h-0">
           <MorphogeneticAnimation />
         </div>
       </div>

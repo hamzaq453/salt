@@ -6,7 +6,7 @@ export default function DiFrage() {
   useScrollReveal();
 
   return (
-    <section id="die-frage" className="bg-salt-white px-6 py-20">
+    <section id="die-frage" className="bg-salt-white px-6 py-16 md:py-20">
       <div className="mx-auto flex max-w-[720px] flex-col items-center text-center">
         <div
           className="reveal-on-scroll mb-8 flex items-center gap-3"

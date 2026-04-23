@@ -60,7 +60,7 @@ export default function WasIstSalt() {
           Energie abgestimmt.
         </p>
 
-        <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-3">
+        <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-3 md:gap-6">
           {cards.map((card, index) => (
             <div
               key={card.number}

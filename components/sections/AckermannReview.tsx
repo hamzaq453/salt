@@ -7,8 +7,8 @@ export default function AckermannReview() {
   useScrollReveal();
 
   return (
-    <section id="transformationen" className="bg-salt-white px-6 py-20">
-      <div className="mx-auto mb-14 flex max-w-[1100px] flex-col items-center text-center">
+    <section id="transformationen" className="bg-salt-white px-6 py-14 md:py-20">
+      <div className="mx-auto mb-8 flex max-w-[1100px] flex-col items-center text-center md:mb-14">
         <div
           className="reveal-on-scroll mb-6 flex items-center gap-3"
           style={{ transitionDelay: "0ms" }}
@@ -50,8 +50,8 @@ export default function AckermannReview() {
           style={{ transitionDelay: "300ms" }}
         >
           {/* Painting column */}
-          <div className="relative flex min-h-[400px] items-center justify-center overflow-hidden bg-salt-violet-light p-8">
-            <div className="relative aspect-[4/5] w-full max-w-[320px]">
+          <div className="relative flex min-h-[350px] items-center justify-center overflow-hidden bg-salt-violet-light p-6 md:min-h-[400px] md:p-8">
+            <div className="relative mx-auto aspect-[4/5] w-full max-w-[280px] md:max-w-[320px]">
               <Image
                 src="/paintings/6 universelle Reinigung.jpg"
                 alt="universelle Reinigung — Energie-Bild für Dr. Josef Ackermann"

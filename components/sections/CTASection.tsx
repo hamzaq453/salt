@@ -2,19 +2,25 @@
 
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
+const pillsMobile = [
+  "30 Min · kostenlos",
+  "Telefon oder Video",
+  "Kein Verkauf",
+] as const;
+
+const pillsDesktop = [
+  "30 Minuten · kostenlos",
+  "Per Telefon oder Video",
+  "Kein Verkaufsgespräch",
+] as const;
+
 export default function CTASection() {
   useScrollReveal();
-
-  const pills = [
-    "30 Minuten · kostenlos",
-    "Per Telefon oder Video",
-    "Kein Verkaufsgespräch",
-  ];
 
   return (
     <section
       id="kontakt"
-      className="relative overflow-hidden bg-salt-white px-6 py-32"
+      className="relative overflow-hidden bg-salt-white px-6 py-16 md:py-20"
     >
       <div
         aria-hidden="true"
@@ -47,7 +53,7 @@ export default function CTASection() {
         </div>
 
         <h2
-          className="reveal-on-scroll font-sans font-extrabold tracking-[-0.03em] text-salt-black leading-[1.05]"
+          className="reveal-on-scroll font-sans font-extrabold leading-[1.05] tracking-[-0.03em] text-salt-black"
           style={{
             fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
             transitionDelay: "100ms",
@@ -68,13 +74,24 @@ export default function CTASection() {
         </p>
 
         <div
-          className="reveal-on-scroll flex flex-wrap items-center justify-center gap-3"
+          className="reveal-on-scroll flex flex-row flex-wrap items-center justify-center gap-2"
           style={{ transitionDelay: "240ms" }}
         >
-          {pills.map((item) => (
+          {pillsMobile.map((item) => (
             <div
               key={item}
-              className="flex items-center gap-2 rounded-[4px] bg-salt-violet-light px-4 py-2"
+              className="flex items-center gap-1.5 rounded-[4px] bg-salt-violet-light px-3 py-1.5 md:hidden"
+            >
+              <div className="h-1 w-1 shrink-0 rounded-full bg-salt-violet" />
+              <p className="font-sans text-[0.6rem] font-medium whitespace-nowrap tracking-[0.04em] text-salt-violet">
+                {item}
+              </p>
+            </div>
+          ))}
+          {pillsDesktop.map((item) => (
+            <div
+              key={item}
+              className="hidden items-center gap-2 rounded-[4px] bg-salt-violet-light px-4 py-2 md:flex"
             >
               <div className="h-1.5 w-1.5 shrink-0 rounded-full bg-salt-violet" />
               <p className="font-sans text-xs font-medium tracking-[0.04em] text-salt-violet">

@@ -41,20 +41,20 @@ function LogoStripCell({
   if (broken) {
     return (
       <div
-        className="relative h-10 w-[90px] shrink-0 rounded-sm bg-salt-greige-bg/70 opacity-60"
+        className="relative h-10 w-[80px] shrink-0 rounded-sm bg-salt-greige-bg/70 opacity-60 md:w-[90px]"
         aria-hidden
       />
     );
   }
 
   return (
-    <div className="relative h-10 w-[90px] shrink-0 grayscale opacity-60 transition-all duration-300 hover:grayscale-0 hover:opacity-100">
+    <div className="relative h-10 w-[80px] shrink-0 grayscale opacity-60 transition-all duration-300 hover:grayscale-0 hover:opacity-100 md:w-[90px]">
       <Image
         src={src}
         alt={alt}
         fill
         className="object-contain object-left"
-        sizes="90px"
+        sizes="(max-width: 767px) 80px, 90px"
         onError={() => setBroken(true)}
       />
     </div>
@@ -71,7 +71,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="grid min-h-screen grid-cols-1 overflow-hidden bg-salt-white pt-[72px] md:grid-cols-2"
+      className="grid min-h-screen grid-cols-1 gap-0 overflow-hidden bg-salt-white pt-[72px] md:grid-cols-2"
     >
       {/* LEFT COLUMN — below image on mobile, left on desktop */}
       <div
@@ -83,7 +83,10 @@ export default function Hero() {
           style={{ animationDelay: "0ms" }}
         >
           <span className="inline-block h-px w-8 shrink-0 bg-salt-violet" />
-          Energie-Kunst für Führungspersönlichkeiten
+          <span className="md:hidden">ENERGIE-KUNST FÜR FÜHRENDE</span>
+          <span className="hidden md:inline">
+            ENERGIE-KUNST FÜR FÜHRUNGSPERSÖNLICHKEITEN
+          </span>
         </p>
 
         <h1
@@ -132,7 +135,7 @@ export default function Hero() {
             Unternehmen, mit denen ich gearbeitet habe
           </p>
           <div
-            className="flex flex-wrap items-center gap-2"
+            className="flex max-w-full flex-wrap items-center gap-2 overflow-hidden"
             aria-label="Auswahl von Unternehmenslogos, mit denen Sabine Alter gearbeitet hat"
           >
             {COMPANY_LOGOS.slice(0, 4).map((logo) => (
@@ -143,10 +146,10 @@ export default function Hero() {
                 <LogoStripCell src={logo.src} alt={logo.alt} />
               </div>
             ))}
-            <span className="font-sans text-[0.72rem] tracking-[0.06em] text-salt-muted-light sm:hidden">
+            <span className="ml-1 shrink-0 font-sans text-[0.72rem] tracking-[0.06em] text-salt-muted-light sm:hidden">
               +14 weitere
             </span>
-            <span className="hidden font-sans text-[0.72rem] tracking-[0.06em] text-salt-muted-light sm:inline">
+            <span className="ml-1 hidden shrink-0 font-sans text-[0.72rem] tracking-[0.06em] text-salt-muted-light sm:inline">
               +12 weitere
             </span>
           </div>
@@ -155,7 +158,7 @@ export default function Hero() {
 
       {/* RIGHT COLUMN — top on mobile, right on desktop */}
       <div
-        className="relative order-1 h-[55vw] max-h-[420px] min-h-[280px] overflow-hidden bg-gradient-to-b from-salt-violet-light to-salt-greige-bg md:order-2 md:h-auto md:max-h-none md:min-h-0"
+        className="relative order-1 mb-0 h-[55vw] max-h-[420px] min-h-[280px] overflow-hidden bg-gradient-to-b from-salt-violet-light to-salt-greige-bg md:order-2 md:mb-0 md:h-auto md:max-h-none md:min-h-0"
       >
         {!portraitFailed ? (
           <div className="absolute inset-0">

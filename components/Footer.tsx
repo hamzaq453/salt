@@ -45,7 +45,7 @@ export default function Footer() {
   return (
     <footer className="bg-salt-black px-5 py-4 sm:px-6">
       <div className="mx-auto flex max-w-[1100px] flex-col gap-3">
-        <div className="flex flex-col items-center justify-between gap-3 md:flex-row md:items-center md:gap-4">
+        <div className="flex flex-col items-center justify-between gap-6 text-center md:flex-row md:items-start md:gap-8 md:text-left">
           <Link href="/" className="shrink-0">
             <div className="relative h-7 w-[76px]">
               <Image
@@ -58,7 +58,7 @@ export default function Footer() {
             </div>
           </Link>
 
-          <nav className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 md:gap-x-4">
+          <nav className="flex flex-col items-center gap-3 md:flex-row md:gap-8">
             {navLinks.map((link) => (
               <Link
                 key={link.label}

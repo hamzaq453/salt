@@ -321,8 +321,8 @@ export default function ReviewsSlider() {
     .sort((a, b) => a.index - b.index);
 
   return (
-    <section id="kundenstimmen" className="overflow-hidden bg-salt-greige-bg py-20">
-      <div className="mx-auto mb-14 max-w-[700px] px-6 text-center">
+    <section id="kundenstimmen" className="overflow-hidden bg-salt-greige-bg py-14 md:py-20">
+      <div className="mx-auto mb-8 max-w-[700px] px-6 text-center md:mb-14">
         <div
           className="reveal-on-scroll mb-6 flex items-center justify-center gap-3"
           style={{ transitionDelay: "0ms" }}
@@ -370,38 +370,43 @@ export default function ReviewsSlider() {
         </div>
       </div>
 
-      <div className="mt-12 flex items-center justify-center gap-6 px-6">
+      <div className="mt-12 flex items-center justify-center gap-4 px-6 md:gap-6">
         <button
           type="button"
           onClick={goPrev}
-          className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-[4px] border border-salt-greige bg-salt-white font-sans text-sm font-semibold text-salt-violet transition-all duration-200 hover:border-salt-violet hover:bg-salt-violet hover:text-white"
+          className="flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-[4px] border border-salt-greige bg-salt-white font-sans text-sm font-semibold text-salt-violet transition-all duration-200 hover:border-salt-violet hover:bg-salt-violet hover:text-white"
           aria-label="Vorherige Bewertung"
         >
           ←
         </button>
 
-        <div className="flex items-center gap-2">
-          {reviews.map((_, index) => (
-            <button
-              key={index}
-              type="button"
-              onClick={() => goTo(index)}
-              className={`
+        <div className="flex min-w-[4rem] items-center justify-center gap-2">
+          <span className="font-sans text-xs tracking-[0.06em] text-salt-muted-light md:hidden">
+            {activeIndex + 1} / {reviews.length}
+          </span>
+          <div className="hidden items-center gap-2 md:flex">
+            {reviews.map((_, index) => (
+              <button
+                key={index}
+                type="button"
+                onClick={() => goTo(index)}
+                className={`
                 h-[4px] cursor-pointer rounded-full transition-all duration-300
                 ${index === activeIndex
                   ? "w-4 bg-salt-violet"
                   : "w-[4px] bg-salt-greige hover:bg-salt-violet/40"
                 }
               `}
-              aria-label={`Gehe zu Bewertung ${index + 1}`}
-            />
-          ))}
+                aria-label={`Gehe zu Bewertung ${index + 1}`}
+              />
+            ))}
+          </div>
         </div>
 
         <button
           type="button"
           onClick={goNext}
-          className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-[4px] border border-salt-greige bg-salt-white font-sans text-sm font-semibold text-salt-violet transition-all duration-200 hover:border-salt-violet hover:bg-salt-violet hover:text-white"
+          className="flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-[4px] border border-salt-greige bg-salt-white font-sans text-sm font-semibold text-salt-violet transition-all duration-200 hover:border-salt-violet hover:bg-salt-violet hover:text-white"
           aria-label="Nächste Bewertung"
         >
           →

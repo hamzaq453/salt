@@ -6,8 +6,9 @@ import { paintings, type Painting } from "@/data/paintings";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { primaryCtaClasses } from "@/lib/ctaClasses";
 
-const TEASER_COL_SPANS = [1, 1, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1] as const;
-const TEASER_ROW_SPANS = [2, 1, 1, 2, 1, 1, 1, 1, 1, 2, 2, 1] as const;
+/** Masonry spans for md+ grid (8 teaser items). */
+const TEASER_COL_SPANS = [1, 1, 1, 1, 2, 1, 1, 1] as const;
+const TEASER_ROW_SPANS = [2, 1, 1, 2, 1, 1, 1, 1] as const;
 
 type TeaserPainting = Painting & { colSpan: number; rowSpan: number };
 
@@ -21,13 +22,11 @@ function teaserMdSpanClasses(colSpan: number, rowSpan: number): string {
 export default function DieGalerie() {
   useScrollReveal();
 
-  const teaserPaintings: TeaserPainting[] = paintings
-    .slice(0, 12)
-    .map((p, index) => ({
-      ...p,
-      colSpan: TEASER_COL_SPANS[index] ?? 1,
-      rowSpan: TEASER_ROW_SPANS[index] ?? 1,
-    }));
+  const teaserPaintings: TeaserPainting[] = paintings.slice(0, 8).map((p, index) => ({
+    ...p,
+    colSpan: TEASER_COL_SPANS[index] ?? 1,
+    rowSpan: TEASER_ROW_SPANS[index] ?? 1,
+  }));
 
   return (
     <section id="galerie" className="bg-salt-white px-6 py-24">
@@ -58,16 +57,13 @@ export default function DieGalerie() {
 
           <Link
             href="/galerie"
-            className="mb-1 hidden font-body text-sm font-medium tracking-[0.08em] text-salt-violet border-b border-salt-violet pb-0.5 whitespace-nowrap transition-all duration-300 hover:tracking-[0.14em] md:block"
+            className="mb-1 hidden border-salt-violet border-b pb-0.5 font-body text-sm font-medium tracking-[0.08em] whitespace-nowrap text-salt-violet transition-all duration-300 hover:tracking-[0.14em] md:block"
           >
             Alle Bilder ansehen →
           </Link>
         </div>
 
-        <div
-          className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4"
-          style={{ gridAutoRows: "200px" }}
-        >
+        <div className="grid auto-rows-[160px] grid-cols-2 gap-2 md:auto-rows-[200px] md:grid-cols-4 md:gap-4">
           {teaserPaintings.map((painting, index) => (
             <Link
               key={painting.filename}
@@ -89,7 +85,7 @@ export default function DieGalerie() {
 
               <div className="absolute inset-0 z-10 flex flex-col justify-end bg-salt-violet/0 p-5 transition-all duration-[400ms] ease-out group-hover:bg-salt-violet/80">
                 <div className="translate-y-4 opacity-0 transition-all duration-[350ms] ease-out group-hover:translate-y-0 group-hover:opacity-100">
-                  <p className="mb-1 font-display text-xl font-semibold italic leading-tight text-white">
+                  <p className="mb-1 font-display text-xl font-semibold leading-tight text-white italic">
                     {painting.title}
                   </p>
                   <p className="font-body text-[0.68rem] font-medium uppercase tracking-[0.12em] text-white/70">
@@ -102,7 +98,7 @@ export default function DieGalerie() {
         </div>
 
         <div
-          className="reveal-on-scroll mt-10 flex flex-col items-center justify-between gap-6 border-t border-salt-greige/40 pt-8 sm:flex-row sm:items-center"
+          className="reveal-on-scroll mt-10 flex flex-col items-center justify-between gap-6 border-salt-greige/40 border-t pt-8 sm:flex-row sm:items-center"
           style={{ transitionDelay: "700ms" }}
         >
           <p className="mb-0 text-center font-body text-sm font-normal tracking-[0.04em] text-salt-muted-light sm:mb-0 sm:text-left">

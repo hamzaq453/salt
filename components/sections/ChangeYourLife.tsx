@@ -9,8 +9,7 @@ const ghostTextStyle: CSSProperties = {
   fontSize: "clamp(120px, 22vw, 220px)",
 };
 
-const headlineStyle: CSSProperties = {
-  fontSize: "clamp(2.8rem, 7vw, 5rem)",
+const headlineTransition: CSSProperties = {
   transitionDelay: "100ms",
 };
 
@@ -20,7 +19,7 @@ export default function ChangeYourLife() {
   return (
     <section
       id="change-your-life"
-      className="relative overflow-hidden bg-salt-white px-6 py-20"
+      className="relative overflow-hidden bg-salt-white px-6 py-16 md:py-20"
     >
       <div
         aria-hidden="true"
@@ -47,8 +46,8 @@ export default function ChangeYourLife() {
         </div>
 
         <h2
-          className="reveal-on-scroll mb-8 text-center font-sans font-extrabold leading-[1.0] tracking-[-0.03em]"
-          style={headlineStyle}
+          className="reveal-on-scroll mb-8 text-center font-sans text-[clamp(1.8rem,6vw,3.5rem)] leading-[1.0] font-extrabold tracking-[-0.03em] md:text-[clamp(2.2rem,5vw,3.5rem)]"
+          style={headlineTransition}
         >
           <span className="block text-salt-black">Sie sieht,</span>
           <span className="block text-salt-crimson">was Du nicht siehst.</span>
@@ -63,7 +62,10 @@ export default function ChangeYourLife() {
           Bild, das Dein Unterbewusstsein aktiviert und Transformation in Gang setzt.
         </p>
 
-        <div className="reveal-on-scroll mb-16" style={{ transitionDelay: "300ms" }}>
+        <div
+          className="reveal-on-scroll mb-10 md:mb-16"
+          style={{ transitionDelay: "300ms" }}
+        >
           <a
             href="https://calendly.com/salt-art/30min"
             target="_blank"
@@ -75,36 +77,36 @@ export default function ChangeYourLife() {
         </div>
 
         <div
-          className="reveal-on-scroll mb-16 flex flex-wrap items-center justify-center gap-8 md:gap-12"
+          className="reveal-on-scroll mb-10 flex flex-wrap items-center justify-center gap-4 md:mb-16 md:gap-12"
           style={{ transitionDelay: "400ms" }}
         >
           <div className="flex flex-col items-center gap-1">
-            <p className="font-sans text-3xl font-extrabold leading-none text-salt-black md:text-4xl">
+            <p className="font-sans text-2xl leading-none font-extrabold text-salt-black md:text-4xl">
               38<span className="text-salt-crimson">+</span>
             </p>
-            <p className="font-sans text-[0.65rem] font-medium uppercase tracking-[0.12em] text-salt-muted-light">
+            <p className="font-sans text-[0.55rem] font-medium uppercase tracking-[0.12em] text-salt-muted-light md:text-[0.65rem]">
               Energie-Bilder
             </p>
           </div>
 
-          <div className="h-10 w-px shrink-0 bg-salt-greige" />
+          <div className="hidden h-10 w-px shrink-0 bg-salt-greige md:block" />
 
           <div className="flex flex-col items-center gap-1">
-            <p className="font-sans text-3xl font-extrabold leading-none text-salt-black md:text-4xl">
+            <p className="font-sans text-2xl leading-none font-extrabold text-salt-black md:text-4xl">
               16<span className="text-salt-crimson">+</span>
             </p>
-            <p className="font-sans text-[0.65rem] font-medium uppercase tracking-[0.12em] text-salt-muted-light">
+            <p className="font-sans text-[0.55rem] font-medium uppercase tracking-[0.12em] text-salt-muted-light md:text-[0.65rem]">
               Transformationen
             </p>
           </div>
 
-          <div className="h-10 w-px shrink-0 bg-salt-greige" />
+          <div className="hidden h-10 w-px shrink-0 bg-salt-greige md:block" />
 
           <div className="flex flex-col items-center gap-1">
-            <p className="font-sans text-3xl font-extrabold leading-none text-salt-black md:text-4xl">
+            <p className="font-sans text-2xl leading-none font-extrabold text-salt-black md:text-4xl">
               21<span className="text-salt-crimson">+</span>
             </p>
-            <p className="font-sans text-[0.65rem] font-medium uppercase tracking-[0.12em] text-salt-muted-light">
+            <p className="font-sans text-[0.55rem] font-medium uppercase tracking-[0.12em] text-salt-muted-light md:text-[0.65rem]">
               Unternehmen
             </p>
           </div>
